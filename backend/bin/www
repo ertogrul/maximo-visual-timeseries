@@ -13,9 +13,10 @@ var http = require('http');
  */
 
 var port = normalizePort(process.env.PORT || '30000');
+// xxxxxx po co ten port???
 app.set('port', port);
 
-console.log("Vue Server Started")
+console.log("Vue Server Started!!")
 /**
  * Create HTTP server.
  */
@@ -39,11 +40,13 @@ function normalizePort(val) {
 
   if (isNaN(port)) {
     // named pipe
+    console.log("port number not ok:" + port);
     return val;
   }
 
   if (port >= 0) {
     // port number
+    console.log("port number ok:" + port);
     return port;
   }
 
@@ -56,6 +59,7 @@ function normalizePort(val) {
 
 function onError(error) {
   if (error.syscall !== 'listen') {
+    console.log("server not listening");
     throw error;
   }
 
@@ -84,8 +88,12 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
+
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
+  //console.log("addr:" + addr); 
+  //console.log("port:" + addr.port); 
+  //console.log('Listening on ' + bind);
   debug('Listening on ' + bind);
 }
